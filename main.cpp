@@ -4,6 +4,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/window.hpp>
 #include "Bat.h"
+#include "Ball.h"
 
 
 int main(){
@@ -19,6 +20,7 @@ int main(){
     int lives = 3;
 
     Bat bat(1920 / 2, 900);
+    Ball ball(1920 / 2, 0);
 
     sf::Font font;
     font.openFromFile("./fonts/DS-DIGI.ttf");
@@ -58,6 +60,7 @@ int main(){
         //update the delta time
         sf::Time dt = clock.restart();
         bat.update(dt);
+        ball.update(dt);
         //hud text
         std::stringstream ss;
         ss << "score: " << score << "  Lives: " << lives;
@@ -67,6 +70,7 @@ int main(){
         window.clear();
         window.draw(HUD);
         window.draw(bat.getShape());
+        window.draw(ball.getShape());
         window.display();
 
     }
